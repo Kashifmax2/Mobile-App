@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopFlow - E-commerce Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">🛍️</div>
+                <span>ShopFlow</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📦</span>
+                    <span>Products</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">🛒</span>
+                    <span>Orders</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span>Customers</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📈</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📣</span>
+                    <span>Marketing</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="upgrade-card">
+                    <h4>Go Pro</h4>
+                    <p>Unlock all features</p>
+                    <button class="btn-upgrade">Upgrade Now</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search products, orders, customers...">
+                </div>
+
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        🔔
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="user-profile">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" alt="User Avatar" class="avatar">
+                        <span class="user-name">Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <div class="page-header">
+                    <h1>Dashboard Overview</h1>
+                    <p class="subtitle">Welcome back! Here's what's happening with your store.</p>
+                </div>
+
+                <!-- Metric Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Total Revenue</span>
+                            <span class="metric-change positive">+12.5%</span>
+                        </div>
+                        <div class="metric-value">$48,295</div>
+                        <div class="metric-subtitle">vs last month</div>
+                        <div class="metric-chart" id="revenueChart"></div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Total Orders</span>
+                            <span class="metric-change positive">+8.2%</span>
+                        </div>
+                        <div class="metric-value">1,847</div>
+                        <div class="metric-subtitle">vs last month</div>
+                        <div class="metric-chart" id="ordersChart"></div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Total Customers</span>
+                            <span class="metric-change positive">+15.3%</span>
+                        </div>
+                        <div class="metric-value">642</div>
+                        <div class="metric-subtitle">vs last month</div>
+                        <div class="metric-chart" id="customersChart"></div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Total Products</span>
+                            <span class="metric-change neutral">0.0%</span>
+                        </div>
+                        <div class="metric-value">384</div>
+                        <div class="metric-subtitle">vs last month</div>
+                        <div class="metric-chart" id="productsChart"></div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-card large">
+                        <div class="card-header">
+                            <h3>Sales Overview</h3>
+                            <div class="chart-filters">
+                                <button class="filter-btn active">Week</button>
+                                <button class="filter-btn">Month</button>
+                                <button class="filter-btn">Year</button>
+                            </div>
+                        </div>
+                        <canvas id="salesChart"></canvas>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Category Breakdown</h3>
+                        </div>
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Orders & Top Products -->
+                <div class="data-section">
+                    <div class="table-card">
+                        <div class="card-header">
+                            <h3>Recent Orders</h3>
+                            <button class="view-all-btn">View All</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#ORD-001</td>
+                                    <td>John Doe</td>
+                                    <td>Wireless Headphones</td>
+                                    <td>$129.99</td>
+                                    <td><span class="status-badge delivered">Delivered</span></td>
+                                    <td>Dec 18, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-002</td>
+                                    <td>Jane Smith</td>
+                                    <td>Smart Watch</td>
+                                    <td>$299.99</td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                    <td>Dec 18, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-003</td>
+                                    <td>Mike Johnson</td>
+                                    <td>Laptop Stand</td>
+                                    <td>$79.99</td>
+                                    <td><span class="status-badge processing">Processing</span></td>
+                                    <td>Dec 17, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-004</td>
+                                    <td>Sarah Wilson</td>
+                                    <td>USB-C Hub</td>
+                                    <td>$49.99</td>
+                                    <td><span class="status-badge delivered">Delivered</span></td>
+                                    <td>Dec 17, 2024</td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-005</td>
+                                    <td>Tom Brown</td>
+                                    <td>Mechanical Keyboard</td>
+                                    <td>$159.99</td>
+                                    <td><span class="status-badge processing">Processing</span></td>
+                                    <td>Dec 16, 2024</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="products-card">
+                        <div class="card-header">
+                            <h3>Top Products</h3>
+                            <button class="view-all-btn">View All</button>
+                        </div>
+                        <div class="products-list">
+                            <div class="product-item">
+                                <img src="https://picsum.photos/seed/product1/60/60" alt="Product" class="product-image">
+                                <div class="product-info">
+                                    <h4>Wireless Headphones</h4>
+                                    <p class="product-category">Electronics</p>
+                                    <div class="product-rating">⭐⭐⭐⭐⭐ (4.9)</div>
+                                </div>
+                                <div class="product-stats">
+                                    <div class="sales-count">234 sold</div>
+                                    <div class="product-price">$129.99</div>
+                                </div>
+                            </div>
+
+                            <div class="product-item">
+                                <img src="https://picsum.photos/seed/product2/60/60" alt="Product" class="product-image">
+                                <div class="product-info">
+                                    <h4>Smart Watch Pro</h4>
+                                    <p class="product-category">Wearables</p>
+                                    <div class="product-rating">⭐⭐⭐⭐⭐ (4.8)</div>
+                                </div>
+                                <div class="product-stats">
+                                    <div class="sales-count">189 sold</div>
+                                    <div class="product-price">$299.99</div>
+                                </div>
+                            </div>
+
+                            <div class="product-item">
+                                <img src="https://picsum.photos/seed/product3/60/60" alt="Product" class="product-image">
+                                <div class="product-info">
+                                    <h4>Laptop Stand</h4>
+                                    <p class="product-category">Accessories</p>
+                                    <div class="product-rating">⭐⭐⭐⭐ (4.5)</div>
+                                </div>
+                                <div class="product-stats">
+                                    <div class="sales-count">156 sold</div>
+                                    <div class="product-price">$79.99</div>
+                                </div>
+                            </div>
+
+                            <div class="product-item">
+                                <img src="https://picsum.photos/seed/product4/60/60" alt="Product" class="product-image">
+                                <div class="product-info">
+                                    <h4>USB-C Hub</h4>
+                                    <p class="product-category">Accessories</p>
+                                    <div class="product-rating">⭐⭐⭐⭐ (4.6)</div>
+                                </div>
+                                <div class="product-stats">
+                                    <div class="sales-count">142 sold</div>
+                                    <div class="product-price">$49.99</div>
+                                </div>
+                            </div>
+
+                            <div class="product-item">
+                                <img src="https://picsum.photos/seed/product5/60/60" alt="Product" class="product-image">
+                                <div class="product-info">
+                                    <h4>Mechanical Keyboard</h4>
+                                    <p class="product-category">Electronics</p>
+                                    <div class="product-rating">⭐⭐⭐⭐⭐ (4.9)</div>
+                                </div>
+                                <div class="product-stats">
+                                    <div class="sales-count">128 sold</div>
+                                    <div class="product-price">$159.99</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
